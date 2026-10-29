@@ -24,42 +24,7 @@
   <meta name="description" content="MORADA, do Soull Studio de Teatro. Encontre sua turma, apresentações e ensaios. 20 e 21 de novembro de 2026, às 17h, no Teatro Regina Vogue.">
   <meta name="theme-color" content="#173f3b"><link rel="icon" href="assets/soull-logo.jpeg"><link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
-  <script defer>
-(() => {
-  const form = document.getElementById('form-ciencia');
-  if (!form) return;
-  const button = document.getElementById('enviar-ciencia');
-  const status = document.getElementById('resultado-ciencia');
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    button.disabled = true;
-    status.textContent = 'Registrando sua confirmação...';
-    try {
-      const response = await fetch('/api/confirmacoes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          responsavel: String(data.get('responsavel') || '').trim(),
-          aluno: String(data.get('aluno') || '').trim(),
-          aceite: data.get('aceite') === 'on',
-          website: String(data.get('website') || '')
-        })
-      });
-      const result = await response.json();
-      if (!response.ok || !result.ok) throw new Error(result.error || 'Não foi possível registrar.');
-      status.textContent = 'Leitura confirmada e registrada em ' + new Date(result.confirmadoEm).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }) + ' (horário de Brasília). Protocolo: ' + result.protocolo + '.';
-      form.reset();
-    } catch (error) {
-      status.textContent = 'Confirmação não registrada. ' + error.message + ' Tente novamente.';
-    } finally {
-      button.disabled = false;
-    }
-  });
-})();
-
-</script>
+  
 </head>
 <body>
 <a class="skip" href="#encontre">Ir para a consulta de turmas</a>
@@ -137,4 +102,40 @@
 <section id="sobre" class="about"><div class="wrap about-grid"><div><p class="eyebrow">05 / SOBRE O ESPETÁCULO</p><h2>“Talvez, no fundo,<br>eu queira falar sobre<br>aquilo que ainda<br><em>mora em nós.</em>”</h2><span class="mini-label">MORADA · DIREÇÃO E DRAMATURGIA DE SAULO SOULL</span></div><div><p class="lead">O que nos abriga além da casa?</p><p>MORADA investiga o que nos abriga além da casa física — corpo, sonhos, brincadeiras, memórias, rua, natureza e relações humanas. Um teatro para crianças que não subestima crianças.</p><p>A casa é uma imagem poética, não uma história única; objetos e espaços se transformam ao longo das cenas.</p><details><summary>Inquieta-me — as perguntas que habitam a obra</summary><p>As palavras. As perguntas. Um engraxate. Uma banqueta e suas infinitas possibilidades. Um corpo que cresce, muda e carrega memórias. Uma pequena casa na Bahia e as histórias que ela me contou. Um sonho procurando um lugar para morar. As experiências dos espaços. As brincadeiras que não cabem nos bolsos. As canções, suas rimas e suas não-rimas. As crianças e as perguntas que elas fazem ao mundo. Aquilo que escolhemos carregar enquanto atravessamos a vida. A morada.</p></details><div id="artistic-text" hidden></div></div></div><div class="wrap moradas"><span>Sonhos <small>o tapete</small></span><span>Brincadeiras <small>o sofá</small></span><span>Corpo <small>os intérpretes</small></span><span>Rua <small>as caixas</small></span><span>Memória <small>a mala</small></span><span>Bichinhos <small>os ninhos</small></span><span>Humanidade <small>palco e plateia</small></span></div></section>
 <section class="wrap section credits"><p class="eyebrow">06 / QUEM FAZ ESSA MORADA</p><h2>Feito por muitas mãos.</h2><dl id="credits"></dl><div class="support"><div><span class="mini-label">APOIO ACADÊMICO</span><p>Colégio Medianeira · Colégio Dom Bosco · Colégio Assunção</p></div><div><span class="mini-label">APOIO CULTURAL</span><p>Baggio Pizzeria e Focacceria · Confeitaria Jauense</p></div><div><span class="mini-label">REALIZAÇÃO</span><p>Soull Studio de Teatro e Arts</p></div></div></section>
 </main><footer><div class="wrap footer-inner"><img class="logo" src="assets/soull-logo.jpeg" alt="Soull Studio de Teatro" width="138" height="78"><p>MORADA · 2026<br><span>Teatro para sentir. Histórias para levar.</span></p><a href="https://www.instagram.com/soullstudiodeteatro/" target="_blank" rel="noopener noreferrer">Acompanhe no Instagram ↗</a><a href="#inicio" aria-label="Voltar ao início">↑</a></div></footer>
+<script>
+(() => {
+  const form = document.getElementById('form-ciencia');
+  if (!form) return;
+  const button = document.getElementById('enviar-ciencia');
+  const status = document.getElementById('resultado-ciencia');
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    button.disabled = true;
+    status.textContent = 'Registrando sua confirmação...';
+    try {
+      const response = await fetch('/api/confirmacoes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          responsavel: String(data.get('responsavel') || '').trim(),
+          aluno: String(data.get('aluno') || '').trim(),
+          aceite: data.get('aceite') === 'on',
+          website: String(data.get('website') || '')
+        })
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Não foi possível registrar.');
+      status.textContent = 'Leitura confirmada e registrada em ' + new Date(result.confirmadoEm).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }) + ' (horário de Brasília). Protocolo: ' + result.protocolo + '.';
+      form.reset();
+    } catch (error) {
+      status.textContent = 'Confirmação não registrada. ' + error.message + ' Tente novamente.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+
+</script>
 </body></html>
