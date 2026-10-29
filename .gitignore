@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+*.log
+media-contact-sheet.png
+qa-*.png
+# Materiais originais permanecem locais; assets/ contém a mídia pública utilizada.
+/*.docx
+/WhatsApp Image*.jpeg

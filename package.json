@@ -1,0 +1,1 @@
+{"name":"soull-morada-2026","version":"1.0.0","private":true,"description":"Página do espetáculo MORADA 2026 — Soull Studio de Teatro","scripts":{"dev":"node server.js","start":"node server.js","check":"node --check app.js && node --check server.js"}}
