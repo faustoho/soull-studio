@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS admin_login_limits (
+  id TEXT PRIMARY KEY,
+  attempts INTEGER NOT NULL,
+  window_start INTEGER NOT NULL
+);

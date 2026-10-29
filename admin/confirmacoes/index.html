@@ -1,0 +1,27 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Confirmações | MORADA 2026</title><style>
+:root{font-family:system-ui,sans-serif;color:#203a35;background:#f7f3e9}*{box-sizing:border-box}body{margin:0}main{max-width:1100px;margin:40px auto;padding:0 20px}h1{font-size:clamp(26px,4vw,42px);margin-bottom:6px}p{line-height:1.5}.controls{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}input,button,a.export{font:inherit;padding:12px 16px;border:1px solid #b8c3b8;border-radius:7px}input{flex:1;min-width:220px}button,a.export{background:#173f3b;color:white;cursor:pointer;text-decoration:none}table{border-collapse:collapse;width:100%;background:white}th,td{text-align:left;padding:12px;border-bottom:1px solid #d9d9cb;overflow-wrap:anywhere}th{background:#eae8dc}div.scroll{overflow-x:auto;border-radius:9px}small{color:#53645b}#status{min-height:24px}a.back{color:#173f3b}#panel,#logout{display:none}#login{max-width:460px}#login input{width:100%}#login button{margin-top:12px}
+</style></head><body><main><a class="back" href="/">← Voltar ao site</a><h1>Confirmações de leitura</h1><p>MORADA 2026 · Área administrativa</p><p><small>Dados pessoais de responsáveis e alunos. Acesso restrito.</small></p>
+<section id="login"><form id="login-form"><label for="password">Senha administrativa</label><input id="password" type="password" autocomplete="current-password" required minlength="16"><button type="submit">Entrar</button></form></section>
+<button id="logout">Sair</button><section id="panel"><div class="controls"><input id="search" placeholder="Buscar responsável ou aluno" aria-label="Buscar por nome"><button id="go">Buscar</button><a class="export" id="export" href="/admin/api/confirmacoes?format=csv">Exportar CSV</a></div><div class="scroll"><table><thead><tr><th>Responsável</th><th>Aluno</th><th>Data e hora (Brasília)</th><th>Protocolo</th><th>Versão</th></tr></thead><tbody id="rows"></tbody></table></div></section><p id="status" role="status"></p></main><script>
+const login=document.querySelector('#login'),panel=document.querySelector('#panel'),logout=document.querySelector('#logout'),status=document.querySelector('#status'),search=document.querySelector('#search'),rows=document.querySelector('#rows');
+function show(auth){login.style.display=auth?'none':'block';panel.style.display=auth?'block':'none';logout.style.display=auth?'inline-block':'none'}
+async function load(){
+ const q=search.value.trim();status.textContent='Consultando…';rows.replaceChildren();
+ document.querySelector('#export').href='/admin/api/confirmacoes?format=csv&q='+encodeURIComponent(q);
+ try{
+  const r=await fetch('/admin/api/confirmacoes?q='+encodeURIComponent(q),{credentials:'same-origin',cache:'no-store'});
+  if(r.status===401){show(false);throw Error('Sessão expirada. Entre novamente.')}
+  if(!r.ok)throw Error('Não foi possível consultar os registros.');
+  const data=await r.json();if(!Array.isArray(data.results))throw Error('Resposta inválida.');
+  for(const record of data.results){const tr=document.createElement('tr');const date=new Date(record.confirmado_em).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'});for(const value of [record.responsavel,record.aluno,date,record.protocolo,record.versao_orientacoes]){const td=document.createElement('td');td.textContent=value||'';tr.appendChild(td)}rows.appendChild(tr)}
+  status.textContent=data.results.length+' registro(s) exibido(s)'+(data.results.length===data.limit?' (limite de exibição atingido)':'')+'.';
+ }catch(e){status.textContent=e.message}
+}
+document.querySelector('#login-form').addEventListener('submit',async e=>{
+ e.preventDefault();status.textContent='Autenticando…';
+ try{const r=await fetch('/admin/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.querySelector('#password').value})});const data=await r.json();if(!r.ok)throw Error(data.error||'Falha ao entrar.');document.querySelector('#password').value='';show(true);await load()}catch(e){status.textContent=e.message}
+});
+logout.addEventListener('click',async()=>{await fetch('/admin/api/logout',{method:'POST'});show(false);rows.replaceChildren();status.textContent='Sessão encerrada.'});
+document.querySelector('#go').addEventListener('click',load);search.addEventListener('keydown',e=>{if(e.key==='Enter')load()});
+fetch('/admin/api/session',{cache:'no-store'}).then(r=>{show(r.ok);if(r.ok)load()}).catch(()=>show(false));
+</script></body></html>
