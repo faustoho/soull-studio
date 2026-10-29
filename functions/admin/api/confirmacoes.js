@@ -30,7 +30,7 @@ export async function onRequestGet({request,env}) {
     const params=search?[escaped,escaped,limit]:[limit];
     const {results}=await env.DB.prepare(sql).bind(...params).all();
     if(format==='csv'){
-      const esc=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,'\'$&').replace(/"/g,'""')+'"';
+      const esc=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/, m => "'"+m).replace(/"/g,'""')+'"';
       const cols=['protocolo','responsavel','aluno','confirmado_em','versao_orientacoes'];
       const csv='\uFEFF'+[cols.join(';'),...results.map(row=>cols.map(k=>esc(row[k])).join(';'))].join('\r\n');
       return new Response(csv,{headers:{'Content-Type':'text/csv; charset=utf-8','Content-Disposition':'attachment; filename="morada-confirmacoes.csv"','Cache-Control':'no-store'}});
