@@ -24,3 +24,5 @@ Link definitivo da Sympla; conclusão da equipe de produção após Maduh e Gabr
 Enviar `index.html`, `styles.css`, `app.js`, `assets/`, `package.json`, `server.js`, `.gitignore` e este README. O briefing e as imagens originais da raiz estão ignorados para evitar publicação involuntária; os arquivos originais foram preservados.
 
 O site pode ser hospedado no GitHub Pages, a partir da raiz da branch escolhida. Todos os caminhos dos assets são relativos, compatíveis com repositórios de projeto. Não há backend, formulário ou coleta de dados. `server.js` serve apenas para prévia local e não é necessário no GitHub Pages.
+
+<!-- Deploy: sincronização do Cloudflare Pages após reconexão do GitHub em 2026-10-29. Sem alterações no site. -->
