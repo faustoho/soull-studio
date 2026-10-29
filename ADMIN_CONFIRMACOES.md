@@ -1,15 +1,16 @@
-# Área administrativa de confirmações — MORADA 2026
+# Área administrativa com senha — MORADA 2026
 
-**NÃO publique esta branch antes de configurar Cloudflare Access.** A rota estática `/admin/confirmacoes/` contém somente a interface, mas deve ser bloqueada pelo Access para que apenas pessoas autorizadas a vejam. A API também verifica criptograficamente o JWT do Access.
+Esta branch **não deve ser publicada antes de configurar os segredos e executar a migração**.
 
-## Configuração
-1. Cloudflare Zero Trust → Access → Applications → Add application → Self-hosted.
-2. Domínio: `morada.soullstudiodeteatro.com.br`; path: `/admin/*`. Proteja todo o prefixo (interface e API). Não proteja `/api/confirmacoes`, pois ele recebe as confirmações das famílias.
-3. Crie política **Allow** somente para os e-mails específicos dos administradores. Utilize autenticação por e-mail/OTP ou IdP; nunca uma política pública.
-4. Em Pages → Settings → Variables and Secrets, configure `ACCESS_AUD` com o **Application Audience (AUD) Tag** do aplicativo Access, e `ACCESS_TEAM_DOMAIN` com o domínio da equipe no formato `sua-equipe.cloudflareaccess.com`. São configurações de servidor; não precisam constar no HTML.
-5. Garanta que o binding `DB` já esteja presente em Production. Teste com usuário autorizado e com navegador anônimo sem login.
-6. Verifique que a página e `/admin/api/confirmacoes` são inacessíveis sem login, e que a API só retorna dados com JWT válido.
+## Preparação no Cloudflare
 
-A API retorna até 100 registros por consulta e exporta até 5000 por CSV. A busca filtra por responsável ou aluno. As datas são apresentadas no horário de Brasília. A exportação contém dados pessoais: guarde o CSV com segurança e defina uma política de retenção.
+1. Em D1 → morada-confirmacoes → Console, execute o arquivo `migrations/0002_admin_login_limits.sql`.
+2. No projeto Cloudflare Pages `soull-studio`, configure em **Production** duas variáveis do tipo **Secret**:
+   - `ADMIN_PASSWORD`: senha administrativa forte, exclusiva, com pelo menos 16 caracteres. Nunca incluir no GitHub nem compartilhar no chat.
+   - `ADMIN_SESSION_SECRET`: valor aleatório independente, com pelo menos 32 caracteres. Pode gerar no PowerShell: `-join ((1..48) | ForEach-Object { 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[(Get-Random -Maximum 62)] })` (para produção, prefira gerador criptograficamente seguro).
+3. Confirme que o binding D1 `DB` existe no ambiente Production.
+4. Após configuração, faça merge e aguarde deploy. Teste em janela anônima: `/admin/confirmacoes/`, login com senha correta, tentativa incorreta, busca, exportação, logout e acesso direto à API sem login (deve retornar 401).
 
-**Importante:** se o aplicativo Cloudflare Access estiver configurado com caminho específico demais, poderá proteger a interface mas não a API. Proteja todo `/admin/*`. O código valida assinatura, emissor, expiração e AUD; o bloqueio no edge é uma segunda camada.
+A API usa cookie HttpOnly, Secure e SameSite=Strict, assinado com HMAC-SHA256 e validade de 8 horas. Tentativas incorretas: até 5 por IP a cada 15 minutos, persistidas no D1. Não há endpoint público para listagem. A página HTML de login é pública, mas os dados só são retornados após autenticação.
+
+**Nota:** para proteção mais forte, considere futuramente Turnstile, MFA e políticas de retenção. A exportação CSV contém dados pessoais de menores; mantenha os arquivos protegidos.
