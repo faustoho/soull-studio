@@ -8,4 +8,6 @@ for (const file of ['index.html', 'styles.css', 'app.js']) {
   fs.copyFileSync(path.join(__dirname, file), path.join(output, file));
 }
 fs.cpSync(path.join(__dirname, 'assets'), path.join(output, 'assets'), { recursive: true });
+// A página administrativa é estática; a API permanece em functions/.
+fs.cpSync(path.join(__dirname, 'admin'), path.join(output, 'admin'), { recursive: true });
 console.log('Site preparado em dist/');
