@@ -40,3 +40,6 @@
 .makeup-home summary{font-size:14px;color:#5c3b61;padding:15px 0}
 .makeup-home p{font-size:13px}
 @media(max-width:760px){.makeup-offer{padding:20px;margin-top:30px;border-radius:14px}.makeup-offer-grid{grid-template-columns:1fr}.makeup-showcase{order:0}.makeup-offer-copy{order:1}.makeup-offer-heading>p{font-size:14px}.makeup-cta{font-size:14px}}
+
+/* Mobile: apresentar contratação antes da alternativa de maquiagem em casa */
+@media(max-width:760px){.makeup-offer-grid{display:flex;flex-direction:column}.makeup-showcase,.makeup-offer-copy{width:100%;order:initial}.makeup-showcase{display:contents}.makeup-showcase-label{order:1;width:100%}.makeup-showcase .inspiration{order:2;width:100%}.makeup-showcase>.small{order:3;width:100%}.makeup-offer-copy{order:4}.makeup-home{order:5;width:100%;margin-top:0}}
