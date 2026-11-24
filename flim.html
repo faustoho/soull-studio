@@ -6,7 +6,7 @@
   <title>MORADA na FLIM Medianeira · Soull Studio de Teatro</title>
   <meta name="description" content="Programação das apresentações de MORADA na FLIM Medianeira, em 3 de dezembro de 2026, no Salão Nobre do Colégio Medianeira.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#173f3b">
+  <meta name="theme-color" content="#2c1c5a">
   <link rel="canonical" href="https://morada.soullstudiodeteatro.com.br/flim">
   <link rel="icon" href="/assets/soull-logo.jpeg">
   <meta property="og:type" content="website">
@@ -16,40 +16,39 @@
   <meta property="og:description" content="3 de dezembro de 2026 · Salão Nobre do Colégio Medianeira. Confira os horários e as orientações.">
   <meta property="og:url" content="https://morada.soullstudiodeteatro.com.br/flim">
   <style>
-    :root{--verde:#173f3b;--creme:#f8f3e9;--tinta:#263c37;--papel:#fffaf2;--linha:#ded0bb;--pessego:#f3d4b0;--terracota:#864c35;--serifa:Georgia,'Times New Roman',serif;--texto:Arial,sans-serif}
+    :root{--roxo:#2c1c5a;--creme:#f8efdf;--tinta:#291a51;--papel:#fffaf3;--linha:#dbccdf;--dourado:#ffba51;--azul:#054d87;--serifa:Georgia,'Times New Roman',serif;--texto:Arial,sans-serif}
     *,*::before,*::after{box-sizing:border-box}
     html{scroll-padding-top:24px}
     body{margin:0;background:var(--creme);color:var(--tinta);font:16px/1.6 var(--texto);overflow-wrap:break-word}
     a{color:inherit;text-underline-offset:.24em}
-    a:focus-visible{outline:3px solid #ad5f19;outline-offset:4px;border-radius:3px}
-    .skip{position:absolute;left:16px;top:12px;z-index:10;background:var(--papel);color:var(--verde);padding:8px 14px;transform:translateY(-150%)}
+    a:focus-visible{outline:3px solid var(--azul);outline-offset:4px;border-radius:3px}
+    .top a:focus-visible,.hero a:focus-visible{outline-color:var(--dourado)}
+    .skip{position:absolute;left:16px;top:12px;z-index:10;background:var(--papel);color:var(--roxo);padding:8px 14px;transform:translateY(-150%)}
     .skip:focus{transform:none}
     .wrap{width:min(1024px,calc(100% - 40px));margin-inline:auto}
-    .top{background:var(--verde);color:#fff;border-bottom:1px solid #ffffff38}
+    .top{background:var(--roxo);color:#fff;border-bottom:1px solid #ffffff38}
     .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:12px;font-size:.84rem;font-weight:700}
     .brand img{display:block;width:85px;height:auto;border-radius:4px}
-    .hero{position:relative;isolation:isolate;overflow:hidden;text-align:center;background:var(--verde);color:#fff;padding:clamp(44px,8vw,88px) 0 clamp(50px,8vw,86px)}
-    .hero::before{position:absolute;z-index:-1;inset:0;content:'';background:radial-gradient(ellipse at center,#35655a 0%,transparent 72%);opacity:.68}
+    .hero{text-align:center;background:var(--roxo);color:#fff;padding-bottom:clamp(24px,5vw,50px)}
+    .hero-image{display:block;width:min(100%,1200px);height:auto;margin:0 auto}
     .eyebrow,.label{font-weight:700;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase}
-    .hero .eyebrow{margin:0;color:var(--pessego)}
-    h1{margin:24px 0 14px;line-height:1.18}
-    .lettering{display:block;width:min(68vw,420px);height:auto;margin:0 auto}
-    h1 span{display:block;margin-top:13px;color:var(--pessego);font:italic 400 clamp(1.54rem,5vw,2.72rem)/1.18 var(--serifa)}
-    .when{margin:26px 0 3px;font-weight:700}
+    .hero .eyebrow{margin:clamp(20px,4vw,38px) 0 0;color:var(--dourado)}
+    h1{font:normal clamp(1.65rem,5vw,3rem)/1.12 var(--serifa);margin:10px 0 12px}
+    .when{margin:0 0 3px;font-weight:700}
     .where{margin:0}
     .hero nav{display:flex;justify-content:center;gap:8px 22px;flex-wrap:wrap;margin-top:25px;color:#fff;font-size:.9rem}
     .intro{max-width:670px;margin:0 0 30px;font:clamp(1.15rem,2.75vw,1.35rem)/1.55 var(--serifa)}
     main.wrap{padding-block:clamp(34px,6vw,66px)}
-    h2{font:normal clamp(1.85rem,4.8vw,2.55rem)/1.12 var(--serifa);color:var(--verde);margin:0 0 16px}
+    h2{font:normal clamp(1.85rem,4.8vw,2.55rem)/1.12 var(--serifa);color:var(--roxo);margin:0 0 16px}
     h3{font:normal 1.55rem/1.18 var(--serifa);margin:0 0 14px}
-    .label{color:var(--terracota);margin:0 0 5px}
+    .label{color:var(--azul);margin:0 0 5px}
     .turno{margin-top:18px;background:var(--papel);border:1px solid var(--linha);border-radius:16px;padding:clamp(16px,4vw,26px)}
     .turno ul{list-style:none;padding:0;margin:0}
     .turno li{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:5px 18px;align-items:baseline;padding:12px 0;border-top:1px solid var(--linha)}
     .turno li:last-child{padding-bottom:1px}
     .horario{font-weight:700;white-space:nowrap}
-    .publico{color:#60695f;font-size:.87rem;white-space:nowrap}
-    .pausa{margin:16px 2px 0;color:var(--terracota);font-style:italic}
+    .publico{color:#5d506c;font-size:.87rem;white-space:nowrap}
+    .pausa{margin:16px 2px 0;color:var(--azul);font-style:italic}
     .details{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:38px}
     .details section{background:var(--papel);border:1px solid var(--linha);border-radius:16px;padding:clamp(17px,4vw,27px)}
     .details h2{font-size:clamp(1.6rem,3.5vw,2rem)}
@@ -57,8 +56,8 @@
     .details p:last-child{margin-bottom:0}
     ol{margin:0;padding-left:1.4rem}
     ol li{padding:4px 0}
-    ol li::marker{color:var(--terracota);font-weight:bold}
-    .footer{background:var(--verde);color:#fff;text-align:center;padding:26px 0;font-size:.93rem}
+    ol li::marker{color:var(--azul);font-weight:bold}
+    .footer{background:var(--roxo);color:#fff;text-align:center;padding:26px 0;font-size:.93rem}
     .footer p{margin:0}
     @media(max-width:660px){
       .details{grid-template-columns:1fr;gap:16px}
@@ -69,8 +68,8 @@
     @media print{
       body,.hero,.top,.footer{background:#fff;color:#172b26}
       .top,.hero nav,.skip{display:none}
-      .hero{padding:18px 0}.hero::before{display:none}.lettering path{fill:#173f3b}
-      .hero .eyebrow,h1 span{color:#173f3b}
+      .hero{padding:18px 0}.hero-image{max-width:400px}
+      .hero .eyebrow{color:#2c1c5a}
       main.wrap{padding-block:18px}.turno,.details section{background:white;break-inside:avoid}
       .footer{border-top:1px solid #888}
     }
@@ -85,9 +84,10 @@
     </div>
   </header>
   <section class="hero" aria-labelledby="titulo">
+    <img class="hero-image" src="/assets/flim-medianeira-banner.jpg" alt="" width="1600" height="800" fetchpriority="high">
     <div class="wrap">
       <p class="eyebrow">Soull Studio de Teatro apresenta</p>
-      <h1 id="titulo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 518 96" role="img" aria-label="MORADA" class="lettering"><path fill="#fff" fill-rule="evenodd" d="M449,43 448,46 449,53 457,61 468,62 476,58 481,53 494,66 510,75 514,74 517,69 517,65 514,60 502,55 490,48 487,45 484,36 476,30 467,30 461,32 456,35Z M480,43 474,50 466,54 461,53 456,49 459,44 468,39 475,39Z M204,27 199,25 192,25 181,30 176,35 174,39 174,46 175,49 180,55 186,58 195,58 201,55 208,48 211,43 211,35Z M184,41 186,38 192,35 199,35 201,37 200,43 194,47 187,46 184,43Z M315,37 314,44 316,49 321,54 325,56 332,57 338,55 347,47 356,57 366,64 376,69 378,69 382,66 383,63 382,56 380,54 357,43 353,39 353,36 347,26 341,24 335,24 328,26 322,29Z M346,38 339,45 333,48 326,47 322,43 328,36 335,33 342,34Z M306,27 305,25 297,21 283,20 264,24 257,27 250,32 248,32 244,27 240,25 236,25 232,28 230,32 230,38 238,56 242,60 248,61 252,58 254,50 257,44 268,34 279,29 289,27 295,27 303,32 306,30Z M0,90 4,95 6,95 6,90 5,89 6,84 22,51 27,44 45,26 50,24 56,24 62,30 64,38 64,55 65,59 68,62 72,62 80,55 90,40 97,45 103,47 109,47 120,43 131,43 145,52 152,52 161,48 164,45 164,42 161,40 153,44 146,44 134,32 126,29 108,30 102,28 94,21 86,22 83,25 75,40 72,25 68,17 61,11 56,10 49,11 42,15 38,19 28,35 14,54 6,71 5,76 0,87Z M411,0 409,1 409,8 412,19 413,31 410,35 406,34 396,37 391,44 391,49 393,53 399,57 402,58 417,58 421,60 430,69 437,70 440,65 436,60 431,58 428,55 424,47 421,34 418,7 416,2Z M401,46 404,44 408,44 412,48 411,49 403,49Z"/></svg><span>na FLIM Medianeira</span></h1>
+      <h1 id="titulo">MORADA na FLIM Medianeira</h1>
       <p class="when"><time datetime="2026-12-03">Quinta-feira, 3 de dezembro de 2026</time></p>
       <p class="where">Salão Nobre do Colégio Medianeira</p>
       <nav aria-label="Nesta página"><a href="#programacao">Programação</a><a href="#cenas">Ordem das cenas</a><a href="#orientacoes">Orientações às famílias</a></nav>
