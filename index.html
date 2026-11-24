@@ -25,12 +25,14 @@
   <meta name="theme-color" content="#173f3b"><link rel="icon" href="assets/soull-logo.jpeg"><link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
   <style>
-    .flim-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:16px;padding:14px clamp(16px,3vw,28px);border-radius:14px;background:#173f3b;color:#fffef9}
-    .flim-banner h2{margin:0;font:400 clamp(21px,3vw,29px)/1.15 Georgia,serif;letter-spacing:normal}
-    .flim-banner time{color:#f3d4b0;font-size:14px}
-    .flim-banner a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:24px;background:#f3d4b0;color:#173f3b;font-weight:700;text-decoration:none}
-    .flim-banner a:hover{text-decoration:underline}
-    .flim-banner a:focus-visible{outline-color:#fffef9;outline-offset:4px}
+    .flim-banner{margin-top:16px}
+    .flim-banner a{display:block;border-radius:14px;overflow:hidden;background:#241544;color:#fffef9;text-decoration:none}
+    .flim-banner img{display:block;width:100%;height:auto}
+    .flim-banner-caption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;padding:10px clamp(14px,3vw,24px)}
+    .flim-banner h2{margin:0;font:400 clamp(17px,2.5vw,23px)/1.2 Georgia,serif;letter-spacing:normal}
+    .flim-banner time,.flim-banner-venue{color:#fae2be;font-size:13px}
+    .flim-banner-cta{font-weight:700;text-decoration:underline;text-underline-offset:4px}
+    .flim-banner a:hover .flim-banner-cta{text-decoration-thickness:2px}
   </style>
   
 </head>
@@ -39,8 +41,13 @@
 <header class="header"><a href="#inicio" aria-label="Soull Studio de Teatro — início"><img class="logo" src="assets/soull-logo.jpeg" alt="Soull Studio de Teatro" width="138" height="78"></a><nav aria-label="Navegação principal"><a href="#encontre">Sua turma</a><a href="#ensaios">Ensaios</a><a href="#orientacoes">Orientações</a><a href="#maquiagem">Maquiagem</a><a href="programa.html">Programa do espetáculo</a><a class="nav-ticket" href="#ingressos">Ingressos <span aria-hidden="true">↗</span></a></nav></header>
 <main id="inicio">
 <section class="flim-banner wrap" aria-labelledby="flim-banner-title">
-  <div><h2 id="flim-banner-title">MORADA na FLIM Medianeira</h2><time datetime="2026-12-03">3 de dezembro</time></div>
-  <a href="/flim">Ver programação</a>
+  <a href="/flim">
+    <img src="/assets/flim-medianeira-banner.jpg" alt="" width="1600" height="800" fetchpriority="high">
+    <div class="flim-banner-caption">
+      <div><h2 id="flim-banner-title">MORADA na FLIM Medianeira</h2><time datetime="2026-12-03">3 de dezembro de 2026</time><span class="flim-banner-venue"> · Salão Nobre do Colégio Medianeira</span></div>
+      <span class="flim-banner-cta">Ver programação</span>
+    </div>
+  </a>
 </section>
 <section class="hero wrap" aria-labelledby="hero-title">
   <div class="hero-copy"><p class="eyebrow">SOULL STUDIO DE TEATRO APRESENTA</p><h1 id="hero-title"><img src="assets/morada-lettering.jpeg" alt="MORADA" width="340" height="138"><span class="edition">TEMPORADA 2026</span></h1><p class="hero-poem">Aquilo que ainda <br>mora em nós.</p><p class="hero-date">20 e 21 de novembro <span>às 17h</span></p><p class="venue">Teatro Regina Vogue · Shopping Estação · Curitiba</p>
