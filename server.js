@@ -7,8 +7,9 @@ const server=http.createServer((req,res)=>{
   let file;
   try{file=decodeURIComponent(new URL(req.url,'http://localhost').pathname);}catch{res.writeHead(400).end();return;}
   if(file==='/')file='/index.html';
+  if(file==='/flim')file='/flim.html';
   // Exponha apenas os arquivos públicos do site, nunca o briefing ou arquivos locais.
-  if(!['/index.html','/styles.css','/app.js'].includes(file)&&!/^\/assets\/[a-zA-Z0-9._-]+$/.test(file)){res.writeHead(404).end('Não encontrado');return;}
+  if(!['/index.html','/flim.html','/styles.css','/app.js'].includes(file)&&!/^\/assets\/[a-zA-Z0-9._-]+$/.test(file)){res.writeHead(404).end('Não encontrado');return;}
   fs.readFile(path.join(root,file),(error,data)=>{if(error){res.writeHead(404).end('Não encontrado');return;}res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff'});res.end(data);});
 });
 server.listen(4173,'127.0.0.1',()=>console.log('Local: http://127.0.0.1:4173'));
